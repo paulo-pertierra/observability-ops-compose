@@ -25,19 +25,6 @@ services:
       - /dev/kmsg:/dev/kmsg
     networks:
       - monitor-net
-  nginx:
-    container_name: nginx
-    hostname: nginx
-    ports:
-      - 9090:9090
-    user: root
-    image: nginx:1.27.3-alpine-slim
-    volumes:
-      - ./nginx/config/conf.d/:/etc/nginx/conf.d
-      - ./secrets/.htpasswd:/etc/nginx/.htpasswd
-    networks:
-      - monitor-net
-      - cloudflared-net
 networks:
   monitor-net:
     driver: bridge

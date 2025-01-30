@@ -3,6 +3,9 @@ global:
   scrape_interval:     15s
   evaluation_interval: 15s
 
+basic_auth_useres:
+  client: $apr1$J2LuxcpK$IqwskHEmkBaqwKvnAvBNS/
+
 rule_files:
   # - "first_rules.yml"
   # - "second_rules.yml"
