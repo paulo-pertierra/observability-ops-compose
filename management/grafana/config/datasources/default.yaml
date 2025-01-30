@@ -1,26 +1,22 @@
 apiVersion: 1
 datasources:
-- name: Staging Logs
+- name: Loki
   type: loki
-  access: direct
-  url: ${STAGING_LOKI_URL}
-- name: Production Logs
-  type: loki
-  access: direct
-  url: ${PRODUCTION_LOKI_URL}
-- name: Staging Telemetry
-  type: prometheus
-  access: direct
-  url: ${STAGING_PROM_URL}
-  basicAuthUser: client
-  basicAuth: true
-  secureJsonData:
-    basicAuthPassword: ${PRODUCTION_PROM_PASSWORD}
-- name: Production Telemetry
-  type: prometheus
-  access: direct
-  url: ${PRODUCTION_PROM_URL}
-  basicAuthUser: client
-  basicAuth: true
-  secureJsonData:
-    basicAuthPassword: ${STAGING_PROM_PASSWORD}
+  access: proxy
+  url: http://loki:3100
+# - name: Staging Telemetry
+#   type: prometheus
+#   access: direct
+#   url: ${STAGING_PROM_URL}
+#   basicAuthUser: client
+#   basicAuth: true
+#   secureJsonData:
+#     basicAuthPassword: ${PRODUCTION_PROM_PASSWORD}
+# - name: Production Telemetry
+#   type: prometheus
+#   access: direct
+#   url: ${PRODUCTION_PROM_URL}
+#   basicAuthUser: client
+#   basicAuth: true
+#   secureJsonData:
+#     basicAuthPassword: ${STAGING_PROM_PASSWORD}
