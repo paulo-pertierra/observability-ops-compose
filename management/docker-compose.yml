@@ -1,0 +1,36 @@
+services:
+  grafana:
+    container_name: grafana
+    hostname: grafana
+    user: root
+    image: grafana/grafana:latest
+    environment:
+      - GF_AUTH_BASIC_ENABLED=true
+      - GF_FEATURE_TOGGLES_ENABLE=accessControlOnCall
+      - GF_INSTALL_PLUGINS=https://storage.googleapis.com/integration-artifacts/grafana-lokiexplore-app/grafana-lokiexplore-app-latest.zip;grafana-lokiexplore-app
+    ports:
+      - 3000:3000/tcp
+    volumes:
+      - ./grafana/config:/etc/grafana/provisioning
+      - ./grafana/data:/var/lib/grafana
+    networks:
+      - cloudflared-net
+      - monitor-net
+  loki:
+    user: root
+    image: grafana/loki:main
+    ports:
+      - 3100:3100
+    volumes:
+      - ./loki/config/config.yaml:/etc/loki/local-config.yaml
+      - ./loki/data:/tmp/loki
+      # - ./secrets/service-account.json:/secrets/service-account.json
+    command: >
+      -config.file=/etc/loki/local-config.yaml
+#      -common.storage.gcs.service-account=${SERVICE_ACCOUNT_KEY}
+    depends_on:
+      - grafana
+    networks:
+      - monitor-net
+
+# This compose file assumes you have cloudflared running in cloudflared-net.
