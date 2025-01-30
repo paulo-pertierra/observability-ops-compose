@@ -3,3 +3,6 @@
 **/alloy/data
 .env
 secrets
+!secrets/README.md
+
+**/secrets
