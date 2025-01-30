@@ -37,7 +37,7 @@ services:
     container_name: nginx
     hostname: nginx
     ports:
-      - 9090:9090
+      - 3100:3100
     user: root
     image: nginx:1.27.3-alpine-slim
     volumes:
