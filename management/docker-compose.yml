@@ -21,8 +21,6 @@ services:
     hostname: loki
     user: root
     image: grafana/loki:main
-    ports:
-      - 3100:3100
     volumes:
       - ./loki/config/config.yaml:/etc/loki/local-config.yaml
       - ./loki/data:/tmp/loki
@@ -36,8 +34,6 @@ services:
   nginx:
     container_name: nginx
     hostname: nginx
-    ports:
-      - 3100:3100
     user: root
     image: nginx:1.27.3-alpine-slim
     volumes:
