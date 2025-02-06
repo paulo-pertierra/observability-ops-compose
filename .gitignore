@@ -1,0 +1,7 @@
+**/loki/data
+**/grafana/data
+**/alloy/data
+.env
+secrets
+!secrets/README.md
+**/secrets

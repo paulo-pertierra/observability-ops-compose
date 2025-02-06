@@ -1,0 +1,35 @@
+services:
+  prometheus:
+    hostname: prometheus
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/config/web.yml:/etc/prometheus/web.yml
+    command: >
+      --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - monitor-net
+      - cloudflared-net
+    ports:
+      - 9090:9090
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    container_name: cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    networks:
+      - monitor-net
+networks:
+  monitor-net:
+    driver: bridge
+    # This compose file assumes you have cloudflared running in cloudflared-net.
+  cloudflared-net:
+    external: true
