@@ -5,7 +5,6 @@ services:
     image: prom/prometheus:latest
     volumes:
       - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/config/web.yml:/etc/prometheus/web.yml
     command: >
       --config.file=/etc/prometheus/prometheus.yml
     networks:
