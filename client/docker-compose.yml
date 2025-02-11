@@ -12,6 +12,7 @@ services:
       - cloudflared-net
     ports:
       - 9090:9090
+    restart: always
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.49.1
     volumes:
@@ -26,6 +27,7 @@ services:
       - /dev/kmsg:/dev/kmsg
     networks:
       - monitor-net
+    restart: always
 networks:
   monitor-net:
     driver: bridge

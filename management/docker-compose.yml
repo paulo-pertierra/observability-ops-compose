@@ -19,6 +19,7 @@ services:
     networks:
       - cloudflared-net
       - monitor-net
+    restart: always
   loki:
     container_name: loki
     hostname: loki
@@ -36,6 +37,7 @@ services:
       - monitor-net
     ports:
       - 3100:3100
+    restart: always
 networks:
   monitor-net:
     driver: bridge
