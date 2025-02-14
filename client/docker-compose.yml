@@ -23,6 +23,8 @@ services:
       - /dev/disk/:/dev/disk:ro
     container_name: cadvisor
     privileged: true
+    command: >
+      --enable_metrics=cpu,memory,network,diskIO,disk
     devices:
       - /dev/kmsg:/dev/kmsg
     networks:
