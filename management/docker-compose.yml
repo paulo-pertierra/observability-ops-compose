@@ -15,7 +15,7 @@ services:
     volumes:
       - ./grafana/config:/etc/grafana/provisioning
       - ./grafana/data:/var/lib/grafana
-      - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
+#      - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
     networks:
       - cloudflared-net
       - monitor-net
@@ -30,7 +30,7 @@ services:
       - ./loki/data:/tmp/loki
     command: >
       -config.file=/etc/loki/local-config.yaml
-      -common.storage.gcs.service-account=${SERVICE_ACCOUNT_KEY}
+#      -common.storage.gcs.service-account=${SERVICE_ACCOUNT_KEY}
     depends_on:
       - grafana
     networks:

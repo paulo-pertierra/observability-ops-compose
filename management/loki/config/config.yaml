@@ -16,9 +16,9 @@ common:
   replication_factor: 1
   path_prefix: /tmp/loki
 
-  storage:
-    gcs:
-      bucket_name: loki_logger
+#  storage:
+#    gcs:
+#      bucket_name: loki_logger
 
 schema_config:
   configs:
